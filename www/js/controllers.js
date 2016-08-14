@@ -40,8 +40,10 @@ angular.module('conference.controllers', ['conference.services', 'ngOpenFB'])
     }, 1000);
   };
   $scope.fbLogin = function () {
+    console.log("Entered FB login");
     ngFB.login({scope: 'email, read_stream, publish_actions'}).then(
       function (response) {
+        console.log("will there be a response?");
         if(response.status === 'connected') {
           console.log( "Facebook login successful" );
           $scope.closeLogin();
@@ -52,7 +54,22 @@ angular.module('conference.controllers', ['conference.services', 'ngOpenFB'])
     );
   };
 })
-
+.controller('loginCtrl', function ($scope) {
+  $scope.fbLogin = function () {
+    console.log("Entered FB login");
+    ngFB.login({scope: 'email, read_stream, publish_actions'}).then(
+      function (response) {
+        console.log("will there be a response?");
+        if(response.status === 'connected') {
+          console.log( "Facebook login successful" );
+          $scope.closeLogin();
+        } else {
+          alert('Facebook login failed');
+        }
+      }
+    );
+  };
+})
 // .controller('PlaylistsCtrl', function($scope) {
 //   $scope.playlists = [
 //     { title: 'Reggae', id: 1 },

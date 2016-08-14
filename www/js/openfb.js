@@ -10,17 +10,12 @@
 var openFB = (function () {
 
     var loginURL = 'https://www.facebook.com/dialog/oauth',
-
         logoutURL = 'https://www.facebook.com/logout.php',
-
     // By default we store fbtoken in sessionStorage. This can be overridden in init()
         tokenStore = window.sessionStorage,
-
     // The Facebook App Id. Required. Set using init().
         fbAppId,
-
         context = window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/")),
-
         baseURL = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + context,
 
     // Default OAuth redirect URL. Can be overriden in init()
@@ -28,27 +23,21 @@ var openFB = (function () {
 
     // Default Cordova OAuth redirect URL. Can be overriden in init()
         cordovaOAuthRedirectURL = "https://www.facebook.com/connect/login_success.html",
-
     // Default Logout redirect URL. Can be overriden in init()
         logoutRedirectURL = baseURL + '/logoutcallback.html',
-
     // Because the OAuth login spans multiple processes, we need to keep the login callback function as a variable
     // inside the module instead of keeping it local within the login function.
         loginCallback,
-
     // Indicates if the app is running inside Cordova
         runningInCordova,
-
     // Used in the exit event handler to identify if the login has already been processed elsewhere (in the oauthCallback function)
         loginProcessed;
-
     // MAKE SURE YOU INCLUDE <script src="cordova.js"></script> IN YOUR index.html, OTHERWISE runningInCordova will always by false.
     // You don't need to (and should not) add the actual cordova.js file to your file system: it will be added automatically
     // by the Cordova build process
     document.addEventListener("deviceready", function () {
         runningInCordova = true;
     }, false);
-
     /**
      * Initialize the OpenFB module. You must use this function and initialize the module with an appId before you can
      * use any other function.

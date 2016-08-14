@@ -3,11 +3,21 @@
     <h1>Search</h1>
     <div class="item item-card">
       <label class="item">
-        <input type="search" style="{width: 100%}"/>
+        <!-- <input type="search" /> -->
+        <input type="search" ng-model="q" placeholder="filter friends..." aria-label="filter sessions" />
       </label>
       <label class="item">
         <button class="button button-block button-positive" type="submit">Search</button>
       </label>
+      <ul class="example-animate-container">
+			    <li class="animate-repeat" ng-repeat="session in sessions | filter:q as results">
+			      <!-- [{{$index + 1}}]  -->
+            {{session.speaker}} will be speaking on {{session.title }} at {{session.time}}.
+			    </li>
+			    <li class="animate-repeat" ng-if="results.length === 0">
+			      <strong>No results found...</strong>
+			    </li>
+			  </ul>
     </div>
   </ion-content>
 </ion-view>

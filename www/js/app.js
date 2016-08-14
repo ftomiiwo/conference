@@ -4,10 +4,14 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-var conference = angular.module('conference', ['ionic', 'conference.controllers', 'ngOpenFB'])
+// var conference =
+angular.module('conference', ['ionic', 'conference.controllers', 'ngOpenFB'])
 
-conference.run(function($ionicPlatform, ngFB) {
-  ngFB.init({appID: '232087040520091'})
+// conference
+.run(function($ionicPlatform, ngFB) {
+  ngFB.init({
+    appId: '232087040520091'
+  });
   $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -21,7 +25,8 @@ conference.run(function($ionicPlatform, ngFB) {
   });
 })
 
-conference.config(function($stateProvider, $urlRouterProvider) {
+// conference
+.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
     .state('app', {
@@ -57,6 +62,15 @@ conference.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
+  .state('app.login' {
+    url: '/app.login',
+    views: {
+      'menuContent' {
+        templateUrl: 'templates/login.html',
+        controller: 'loginCtrl'
+      }
+    }
+  })
   .state('app.session', {
     url: "/sessions/:sessionId",
     views: {
